@@ -1,0 +1,29 @@
+[
+  {
+    "nombre": "Comunidad Anti-Spam Perú",
+    "tipo": "propia",
+    "licencia": "Propia - Reportes de usuarios",
+    "descripcion": "Reportes hechos por peruanos en este repo"
+  },
+  {
+    "nombre": "FTC Do Not Call",
+    "tipo": "gobierno",
+    "licencia": "Dominio Público",
+    "url": "https://www.ftc.gov/exploredata",
+    "descripcion": "Quejas públicas del gobierno de USA. Referencia, no son números de Perú"
+  },
+  {
+    "nombre": "OpenSpam API",
+    "tipo": "api-publica",
+    "licencia": "API pública documentada",
+    "url": "https://openspam.com",
+    "descripcion": "Base comunitaria con API pública para consultar número por número"
+  },
+  {
+    "nombre": "GACS Blacklist",
+    "tipo": "comunitaria",
+    "licencia": "CC BY 4.0 - Hay que dar crédito",
+    "url": "https://gacs.app",
+    "descripcion": "Lista negra cuando 3 personas reportan el mismo número. Usamos con crédito."
+  }
+]
