@@ -1,0 +1,23 @@
+[
+  {
+    "numero": "+51999999999",
+    "tipo": "ejemplo",
+    "reportes": 1,
+    "ultimo_reporte": "2026-11-11",
+    "comentarios": [
+      "Este es un ejemplo para probar el formato. No es un número real de spam."
+    ],
+    "fuente": "Comunidad Anti-Spam Perú"
+  },
+  {
+    "numero": "+51988888888",
+    "tipo": "spam",
+    "reportes": 3,
+    "ultimo_reporte": "2026-11-11",
+    "comentarios": [
+      "Llaman diciendo que ganaste un premio",
+      "Insisten en pedir datos personales"
+    ],
+    "fuente": "Comunidad Anti-Spam Perú"
+  }
+]
