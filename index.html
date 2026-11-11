@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anti-Spam Perú 🇵🇪</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;background:#0f172a;color:#fff;margin:0;padding:20px}
+.container{max-width:700px;margin:auto}
+h1{text-align:center}
+p.sub{text-align:center;color:#cbd5e1}
+.box{background:#1e293b;padding:20px;border-radius:16px}
+input{width:100%;padding:14px;border-radius:10px;border:none;font-size:18px;box-sizing:border-box}
+button{width:100%;margin-top:12px;padding:14px;border:none;border-radius:10px;background:#22c55e;color:#000;font-size:18px;font-weight:bold}
+.result{margin-top:16px;padding:16px;border-radius:12px;background:#020617}
+.spam{color:#f87171}.ok{color:#4ade80}.warn{color:#facc15}
+.card{background:#1e293b;padding:14px;border-radius:12px;margin-top:12px}
+small{color:#94a3b8}
+a{color:#4ade80}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🛡️ Anti-Spam Perú 🇵🇪</h1>
+<p class="sub">Busca un número y mira si está reportado como spam o estafa. Comunidad, sin Google.</p>
+<div class="box">
+<input id="num" placeholder="Ej: 999999999 o +51999999999" inputmode="numeric">
+<button onclick="buscar()">🔍 BUSCAR NÚMERO</button>
+<div id="res" class="result">Escribe un número y dale a BUSCAR.</div>
+</div>
+<h2>📋 Últimos reportados</h2>
+<div id="lista"></div>
+<p style="text-align:center;margin-top:20px"><small>¿Te llamaron con spam? Repórtalo en GitHub: <a href="https://github.com/luckwar79-hash/anti-spam-peru">Reportar aquí</a></small></p>
+</div>
+<script>
+let datos=[];
+async function cargar(){
+  try{
+    const r=await fetch('data/numeros.json');
+    datos=await r.json();
+    document.getElementById('lista').innerHTML=datos.map(n=>`<div class="card"><b>${n.numero}</b> - <span class="spam">${n.tipo}</span><br><small>${n.reportes} reportes | ${n.ultimo_reporte}</small><br>${n.comentarios.join('<br>')}</div>`).join('');
+  }catch(e){document.getElementById('lista').innerHTML='No se pudo cargar datos todavía.'}
+}
+function limpiar(n){return n.replace(/[^0-9]/g,'').replace(/^51/,'').slice(-9)}
+function buscar(){
+  let v=document.getElementById('num').value;
+  let limpio=limpiar(v);
+  let res=document.getElementById('res');
+  if(limpio.length<9){res.innerHTML='<span class="warn">⚠️ Escribe un número válido de 9 dígitos.</span>';return}
+  let e=datos.find(d=>limpiar(d.numero)===limpio);
+  if(e){res.innerHTML=`<span class="spam">🚨 ¡CUIDADO! NÚMERO REPORTADO</span><br><br><b>${e.numero}</b><br>Tipo: ${e.tipo}<br>Reportes: ${e.reportes}<br>Último reporte: ${e.ultimo_reporte}<br><br>${e.comentarios.join('<br>')}`}
+  else{res.innerHTML=`<span class="ok">✅ Sin reportes en nuestra comunidad</span><br><br>Número ${limpio} no aparece como spam.<br><small>Igual ten cuidado si te piden plata o códigos.</small>`}
+}
+cargar();
+</script>
+</body>
+</html>
